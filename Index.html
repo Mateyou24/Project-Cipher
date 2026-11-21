@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CIFERA // VAULT — Trickery Cryptographic Relay</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar Server (Kiri) -->
+    <nav class="server-sidebar">
+      <div class="server-icon active" title="Okhema Vault (Server Utama)">
+        <!-- Ikon Kucing & Koin Khas Cipher -->
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 3l2.5 4.5L19 6l-1.5 5.5A7 7 0 1 1 6.5 11.5L5 6l4.5 1.5L12 3z"/>
+          <circle cx="9.5" cy="13" r="1" fill="currentColor"/>
+          <circle cx="14.5" cy="13" r="1" fill="currentColor"/>
+        </svg>
+      </div>
+      <div class="server-divider"></div>
+      <button class="server-icon coin-btn" id="btn-gen-key" title="Coin of Whimsy: Buat Kunci Acak">🪙</button>
+      <button class="server-icon" id="btn-info" title="Protokol Coreflame of Trickery">📜</button>
+    </nav>
+
+    <!-- Sidebar Channel & Konfigurasi Trickery -->
+    <aside class="channel-sidebar">
+      <div class="server-header">
+        <div>
+          <h2>CIFERA // VAULT</h2>
+          <span class="sub-lore">Amphoreus Relay</span>
+        </div>
+        <span class="badge-secure">TRICKERY-256</span>
+      </div>
+
+      <div class="channel-list">
+        <div class="channel-category">SALURAN BAYANGAN</div>
+        <button class="channel-item active" data-channel="okhema" data-desc="Saluran obrolan terenkripsi penuh untuk para Pewaris Chrysos.">
+          <span class="hash">#</span> okhema-alley
+        </button>
+        <button class="channel-item" data-channel="fleece" data-desc="Brankas transfer dokumen & artefak dengan segel integritas SHA-256.">
+          <span class="hash">#</span> golden-fleece-loot
+        </button>
+        <button class="channel-item" data-channel="whispers" data-desc="Ruang bisikan anonim — identitas pengirim dilebur oleh Veil of Zagreus.">
+          <span class="hash">#</span> shadow-whispers
+        </button>
+      </div>
+
+      <!-- Panel Konfigurasi Identitas & Kunci Inti Api -->
+      <div class="crypto-config">
+        <div class="config-group">
+          <label for="username-input">Nama Samaran (Sealed Identity)</label>
+          <input type="text" id="username-input" placeholder="Misal: Cifera_01" />
+        </div>
+
+        <div class="config-group">
+          <label for="secret-key-input">Kunci Inti Api (Coreflame Key)</label>
+          <div class="key-input-wrapper">
+            <input type="password" id="secret-key-input" value="ZagreusTrickery2026" />
+            <button type="button" id="btn-toggle-key" title="Lihat/Sembunyikan Kunci">👁️</button>
+          </div>
+          <small>Klik ikon 🪙 di kiri untuk melempar koin kunci acak.</small>
+        </div>
+
+        <div class="config-checkbox">
+          <input type="checkbox" id="anon-mode" />
+          <label for="anon-mode">
+            <strong>Veil of Zagreus</strong> — Sembunyikan identitas asli bahkan dari penerima pesan.
+          </label>
+        </div>
+      </div>
+
+      <!-- Panel Status Pengguna -->
+      <div class="user-panel">
+        <div class="avatar" id="user-avatar">C</div>
+        <div class="user-details">
+          <span id="display-username">Cifera</span>
+          <small class="status-online">✦ Langkah Bayangan Aktif</small>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Area Chat Utama -->
+    <main class="chat-area">
+      <header class="chat-header">
+        <div>
+          <h3 id="current-channel-title"># okhema-alley</h3>
+          <span class="channel-desc" id="channel-desc">Saluran obrolan terenkripsi penuh untuk para Pewaris Chrysos.</span>
+        </div>
+        <button id="btn-clear" class="btn-secondary">Hapus Jejak</button>
+      </header>
+
+      <div class="messages-container" id="messages-container"></div>
+
+      <!-- Preview File Sebelum Disegel -->
+      <div class="file-preview hidden" id="file-preview">
+        <span id="file-preview-name">🪙 artefak.pdf</span>
+        <button type="button" id="btn-remove-file">✕</button>
+      </div>
+
+      <!-- Form Input Pesan & File -->
+      <form class="chat-input-area" id="chat-form">
+        <label for="file-input" class="attach-btn" title="Sisipkan Artefak / File Terenkripsi">📎</label>
+        <input type="file" id="file-input" hidden />
+        <input
+          type="text"
+          id="message-input"
+          placeholder="Bisikkan pesan terenkripsi ke #okhema-alley..."
+          autocomplete="off"
+        />
+        <button type="submit" class="send-btn">Segel & Kirim 🪙</button>
+      </form>
+    </main>
+
+    <!-- Panel Inspector Kriptografi (Untuk Demo ke Dosen) -->
+    <aside class="inspector-sidebar">
+      <div class="inspector-header">
+        <h3>👁️ Okhema Public Ledger</h3>
+        <p>Tampilan di sisi Server / Pengintai (Hanya ilusi & sandi acak)</p>
+      </div>
+      <div class="inspector-content" id="inspector-content">
+        <div class="empty-inspector">Belum ada jejak sandi di saluran ini.</div>
+      </div>
+    </aside>
+  </div>
+
+  <script src="crypto.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
