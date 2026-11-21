@@ -1,16 +1,16 @@
 :root {
-  --bg-abyss: #0b0e14;
-  --bg-navy-dark: #111622;
-  --bg-navy-main: #161d2c;
-  --bg-input: #1f293d;
-  --border-subtle: #263248;
+  --bg-abyss: #090d16;
+  --bg-navy-dark: #101624;
+  --bg-navy-main: #151e30;
+  --bg-input: #1e2942;
+  --border-subtle: #283652;
   --text-silver: #e2e8f0;
   --text-muted: #8b9bb4;
   --cyan-glow: #38bdf8;
   --cyan-hover: #0284c7;
   --gold-chrysos: #f5c451;
-  --gold-dim: rgba(245, 196, 81, 0.15);
-  --cyan-dim: rgba(56, 189, 248, 0.15);
+  --gold-dim: rgba(245, 196, 81, 0.16);
+  --cyan-dim: rgba(56, 189, 248, 0.16);
   --red-alert: #f43f5e;
 }
 
@@ -26,25 +26,53 @@ body {
   color: var(--text-silver);
   height: 100vh;
   overflow: hidden;
+  position: relative;
+}
+
+/* Partikel Emas & Cahaya Melayang */
+.ambient-particles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.ambient-particles span {
+  position: absolute;
+  bottom: -20px;
+  font-size: 14px;
+  color: var(--gold-chrysos);
+  opacity: 0.25;
+  animation: floatUp 14s linear infinite;
+}
+
+.ambient-particles span:nth-child(1) { left: 15%; animation-duration: 12s; }
+.ambient-particles span:nth-child(2) { left: 32%; animation-duration: 16s; animation-delay: 2s; }
+.ambient-particles span:nth-child(3) { left: 50%; animation-duration: 13s; animation-delay: 4s; color: var(--cyan-glow); }
+.ambient-particles span:nth-child(4) { left: 68%; animation-duration: 15s; animation-delay: 1s; }
+.ambient-particles span:nth-child(5) { left: 82%; animation-duration: 11s; animation-delay: 5s; color: var(--cyan-glow); }
+.ambient-particles span:nth-child(6) { left: 92%; animation-duration: 17s; animation-delay: 3s; }
+
+@keyframes floatUp {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+  20% { opacity: 0.3; }
+  80% { opacity: 0.25; }
+  100% { transform: translateY(-105vh) rotate(360deg); opacity: 0; }
 }
 
 .app-container {
   display: grid;
-  grid-template-columns: 68px 265px 1fr 330px;
+  grid-template-columns: 68px 275px 1fr 325px;
   height: 100vh;
+  position: relative;
+  z-index: 1;
 }
 
 /* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-::-webkit-scrollbar-thumb {
-  background: var(--border-subtle);
-  border-radius: 3px;
-}
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-subtle); border-radius: 3px; }
 
 /* Server Sidebar */
 .server-sidebar {
@@ -53,8 +81,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 14px;
-  gap: 12px;
+  padding-top: 16px;
+  gap: 14px;
 }
 
 .server-icon {
@@ -69,26 +97,39 @@ body {
   justify-content: center;
   font-size: 20px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
+  position: relative;
 }
 
 .server-icon.active, .server-icon:hover {
   border-radius: 14px;
   background-color: var(--cyan-dim);
   border-color: var(--cyan-glow);
-  box-shadow: 0 0 12px rgba(56, 189, 248, 0.25);
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.35);
 }
 
 .server-icon.coin-btn:hover {
   background-color: var(--gold-dim);
   border-color: var(--gold-chrysos);
-  box-shadow: 0 0 12px rgba(245, 196, 81, 0.3);
+  box-shadow: 0 0 14px rgba(245, 196, 81, 0.4);
+  transform: scale(1.06);
 }
 
 .server-divider {
   width: 32px;
   height: 1px;
   background-color: var(--border-subtle);
+}
+
+/* Animasi Kedip Mata Cipher */
+.cipher-eye-blink {
+  transform-origin: center;
+  animation: catBlink 5s infinite;
+}
+
+@keyframes catBlink {
+  0%, 94%, 100% { transform: scaleY(1); }
+  97% { transform: scaleY(0.1); }
 }
 
 /* Channel Sidebar */
@@ -101,12 +142,12 @@ body {
 }
 
 .server-header {
-  padding: 14px 16px;
+  padding: 13px 16px;
   border-bottom: 1px solid var(--border-subtle);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(180deg, rgba(56, 189, 248, 0.06) 0%, transparent 100%);
+  background: linear-gradient(180deg, rgba(56, 189, 248, 0.08) 0%, transparent 100%);
 }
 
 .server-header h2 {
@@ -124,17 +165,103 @@ body {
 .badge-secure {
   background: var(--gold-dim);
   color: var(--gold-chrysos);
-  border: 1px solid rgba(245, 196, 81, 0.4);
+  border: 1px solid rgba(245, 196, 81, 0.45);
   font-size: 10px;
   padding: 3px 6px;
   border-radius: 4px;
   font-weight: 700;
-  letter-spacing: 0.5px;
 }
 
-.channel-list {
-  padding: 14px 10px;
+/* Kartu Showcase Cipher & Koin Zagreus 3D */
+.cipher-showcase {
+  margin: 10px 10px 4px;
+  padding: 10px;
+  background: linear-gradient(135deg, rgba(30, 41, 66, 0.85), rgba(15, 23, 42, 0.95));
+  border: 1px solid rgba(245, 196, 81, 0.35);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: inset 0 0 18px rgba(56, 189, 248, 0.08);
+}
+
+.cipher-portrait {
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.2), transparent 70%);
+  transition: transform 0.3s ease;
+}
+
+.cipher-portrait:hover {
+  transform: scale(1.06) rotate(-2deg);
+}
+
+.zagreus-coin-box {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
   flex-grow: 1;
+}
+
+.coin-3d {
+  width: 36px;
+  height: 36px;
+  position: relative;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.coin-3d.flipping {
+  animation: coinSpin3D 0.9s ease-in-out;
+}
+
+@keyframes coinSpin3D {
+  0% { transform: rotateY(0deg) translateY(0); }
+  50% { transform: rotateY(540deg) translateY(-10px) scale(1.15); }
+  100% { transform: rotateY(1080deg) translateY(0); }
+}
+
+.coin-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  background: radial-gradient(circle at 30% 30%, #fef08a, #d97706);
+  border: 2px solid #fde047;
+  box-shadow: 0 0 10px rgba(245, 196, 81, 0.5);
+  backface-visibility: hidden;
+}
+
+.coin-back {
+  transform: rotateY(180deg);
+  background: radial-gradient(circle at 30% 30%, #7dd3fc, #0284c7);
+  border-color: #38bdf8;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+}
+
+.coin-status .coin-title {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gold-chrysos);
+}
+
+.coin-status small {
+  display: block;
+  font-size: 10px;
+  color: var(--text-muted);
+  line-height: 1.25;
+}
+
+/* Daftar Channel */
+.channel-list {
+  padding: 10px;
+  flex-grow: 1;
+  overflow-y: auto;
 }
 
 .channel-category {
@@ -142,8 +269,8 @@ body {
   font-weight: 700;
   letter-spacing: 0.8px;
   color: var(--text-muted);
-  margin-bottom: 8px;
-  padding-left: 8px;
+  margin-bottom: 6px;
+  padding-left: 6px;
 }
 
 .channel-item {
@@ -152,10 +279,10 @@ body {
   background: none;
   border: 1px solid transparent;
   color: var(--text-muted);
-  padding: 9px 10px;
+  padding: 8px 10px;
   border-radius: 6px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 13.5px;
   margin-bottom: 4px;
   transition: 0.15s;
 }
@@ -167,43 +294,44 @@ body {
 }
 
 .channel-item:hover {
-  background-color: rgba(255, 255, 255, 0.04);
+  background-color: rgba(255, 255, 255, 0.05);
   color: var(--text-silver);
+  padding-left: 14px;
 }
 
 .channel-item.active {
   background-color: var(--cyan-dim);
-  border-color: rgba(56, 189, 248, 0.3);
+  border-color: rgba(56, 189, 248, 0.35);
   color: #fff;
   font-weight: 600;
 }
 
 /* Crypto Config Panel */
 .crypto-config {
-  padding: 12px;
-  background-color: #0e131d;
+  padding: 10px 12px;
+  background-color: #0c111c;
   border-top: 1px solid var(--border-subtle);
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 
 .config-group label {
   display: block;
   font-size: 11px;
   color: var(--cyan-glow);
-  margin-bottom: 4px;
+  margin-bottom: 3px;
   font-weight: 600;
 }
 
 .config-group input {
   width: 100%;
-  padding: 7px 9px;
+  padding: 6px 8px;
   border-radius: 5px;
   border: 1px solid var(--border-subtle);
   background: var(--bg-navy-main);
   color: #fff;
-  font-size: 13px;
+  font-size: 12.5px;
 }
 
 .config-group input:focus {
@@ -225,26 +353,20 @@ body {
   color: var(--text-silver);
 }
 
-.config-group small {
-  font-size: 10px;
-  color: var(--text-muted);
-  display: block;
-  margin-top: 3px;
-}
-
 .config-checkbox {
   display: flex;
   align-items: flex-start;
   gap: 7px;
   font-size: 11px;
   color: var(--text-muted);
-  line-height: 1.35;
+  line-height: 1.3;
 }
 
 .config-checkbox strong {
   color: var(--gold-chrysos);
 }
 
+/* User Panel dengan Ornamen Telinga Kucing */
 .user-panel {
   background-color: var(--bg-abyss);
   padding: 10px 12px;
@@ -254,33 +376,46 @@ body {
   border-top: 1px solid var(--border-subtle);
 }
 
-.avatar {
+.cat-avatar {
   width: 36px;
   height: 36px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--cyan-glow), #1d4ed8);
-  color: #0b0e14;
+  color: #090d16;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 800;
-  box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+  position: relative;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.35);
 }
 
-.user-details {
-  display: flex;
-  flex-direction: column;
+/* Telinga Kucing CSS */
+.cat-avatar::before,
+.cat-avatar::after {
+  content: "";
+  position: absolute;
+  top: -5px;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 9px solid var(--cyan-glow);
 }
 
-.user-details span {
-  font-size: 13px;
-  font-weight: 600;
+.cat-avatar::before {
+  left: 2px;
+  transform: rotate(-18deg);
 }
 
-.status-online {
-  color: var(--cyan-glow);
-  font-size: 11px;
+.cat-avatar::after {
+  right: 2px;
+  transform: rotate(18deg);
 }
+
+.user-details { display: flex; flex-direction: column; }
+.user-details span { font-size: 13px; font-weight: 600; }
+.status-online { color: var(--gold-chrysos); font-size: 11px; }
 
 /* Chat Area */
 .chat-area {
@@ -288,6 +423,18 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.chat-watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .chat-header {
@@ -296,18 +443,12 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: rgba(17, 22, 34, 0.6);
+  background-color: rgba(16, 22, 36, 0.75);
+  z-index: 1;
 }
 
-.chat-header h3 {
-  font-size: 16px;
-  color: #fff;
-}
-
-.channel-desc {
-  font-size: 12px;
-  color: var(--text-muted);
-}
+.chat-header h3 { font-size: 16px; color: #fff; }
+.channel-desc { font-size: 12px; color: var(--text-muted); }
 
 .btn-secondary {
   background: var(--bg-input);
@@ -332,24 +473,26 @@ body {
   display: flex;
   flex-direction: column;
   gap: 14px;
+  z-index: 1;
 }
 
 .message-card {
-  background: rgba(11, 14, 20, 0.55);
+  background: rgba(9, 13, 22, 0.72);
+  backdrop-filter: blur(4px);
   padding: 12px 15px;
-  border-radius: 8px;
+  border-radius: 10px;
   border: 1px solid var(--border-subtle);
   border-left: 3px solid var(--cyan-glow);
+  animation: slideInMsg 0.25s ease-out;
 }
 
-.message-card.anon-card {
-  border-left-color: var(--gold-chrysos);
+@keyframes slideInMsg {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.message-card.failed {
-  border-left-color: var(--red-alert);
-  opacity: 0.85;
-}
+.message-card.anon-card { border-left-color: var(--gold-chrysos); }
+.message-card.failed { border-left-color: var(--red-alert); opacity: 0.85; }
 
 .msg-meta {
   display: flex;
@@ -359,15 +502,8 @@ body {
   flex-wrap: wrap;
 }
 
-.msg-sender {
-  font-weight: 700;
-  font-size: 14px;
-  color: #fff;
-}
-
-.msg-sender.phantom {
-  color: var(--gold-chrysos);
-}
+.msg-sender { font-weight: 700; font-size: 14px; color: #fff; }
+.msg-sender.phantom { color: var(--gold-chrysos); }
 
 .msg-badge {
   font-size: 10px;
@@ -383,17 +519,99 @@ body {
   color: var(--gold-chrysos);
 }
 
-.msg-time {
+.msg-time { font-size: 11px; color: var(--text-muted); }
+.msg-body { font-size: 14px; line-height: 1.45; word-break: break-word; }
+
+/* Tampilan Stiker Terenkripsi di dalam Chat */
+.sticker-message {
+  margin-top: 6px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.14), rgba(15, 23, 42, 0.6));
+  border: 1px solid rgba(245, 196, 81, 0.35);
+  border-radius: 14px;
+  padding: 10px 14px;
+  animation: stickerPop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes stickerPop {
+  0% { transform: scale(0.6) rotate(-6deg); opacity: 0; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+.sticker-caption {
+  margin-top: 4px;
   font-size: 11px;
+  font-weight: 700;
+  color: var(--gold-chrysos);
+  letter-spacing: 0.3px;
+}
+
+/* Laci Pemilihan Stiker (Sticker Drawer) */
+.sticker-drawer {
+  margin: 0 20px 8px;
+  background: var(--bg-navy-dark);
+  border: 1px solid var(--gold-chrysos);
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 -6px 24px rgba(0, 0, 0, 0.55);
+  z-index: 5;
+}
+
+.sticker-drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gold-chrysos);
+}
+
+.sticker-drawer-header button {
+  background: none;
+  border: none;
   color: var(--text-muted);
-}
-
-.msg-body {
+  cursor: pointer;
   font-size: 14px;
-  line-height: 1.45;
-  word-break: break-word;
 }
 
+.sticker-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.sticker-item {
+  background: var(--bg-navy-main);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--text-silver);
+}
+
+.sticker-item:hover {
+  border-color: var(--cyan-glow);
+  background: var(--cyan-dim);
+  transform: translateY(-3px) scale(1.03);
+}
+
+.sticker-item span {
+  font-size: 11px;
+  margin-top: 4px;
+  font-weight: 600;
+  color: var(--gold-chrysos);
+}
+
+/* Lampiran File */
 .file-attachment {
   margin-top: 10px;
   background: var(--bg-navy-dark);
@@ -414,7 +632,7 @@ body {
 
 .btn-download {
   background: var(--gold-chrysos);
-  color: #0b0e14;
+  color: #090d16;
   text-decoration: none;
   padding: 6px 12px;
   border-radius: 5px;
@@ -433,6 +651,7 @@ body {
   justify-content: space-between;
   font-size: 13px;
   color: var(--gold-chrysos);
+  z-index: 2;
 }
 
 .file-preview button {
@@ -442,28 +661,30 @@ body {
   cursor: pointer;
 }
 
-.hidden {
-  display: none !important;
-}
+.hidden { display: none !important; }
 
+/* Input Chat Area */
 .chat-input-area {
-  padding: 14px 20px;
+  padding: 12px 20px 16px;
   display: flex;
-  gap: 10px;
+  gap: 8px;
   align-items: center;
+  z-index: 2;
 }
 
-.attach-btn {
+.attach-btn, .sticker-btn {
   background: var(--bg-input);
   border: 1px solid var(--border-subtle);
   padding: 10px 12px;
   border-radius: 8px;
   cursor: pointer;
   font-size: 16px;
+  transition: 0.15s;
 }
 
-.attach-btn:hover {
+.attach-btn:hover, .sticker-btn:hover {
   border-color: var(--gold-chrysos);
+  transform: scale(1.05);
 }
 
 #message-input {
@@ -483,7 +704,7 @@ body {
 
 .send-btn {
   background: linear-gradient(135deg, var(--cyan-glow), #2563eb);
-  color: #0b0e14;
+  color: #090d16;
   border: none;
   padding: 12px 16px;
   border-radius: 8px;
@@ -492,9 +713,7 @@ body {
   transition: 0.15s;
 }
 
-.send-btn:hover {
-  filter: brightness(1.1);
-}
+.send-btn:hover { filter: brightness(1.12); }
 
 /* Inspector Sidebar */
 .inspector-sidebar {
@@ -510,16 +729,8 @@ body {
   border-bottom: 1px solid var(--border-subtle);
 }
 
-.inspector-header h3 {
-  font-size: 14px;
-  color: var(--gold-chrysos);
-  margin-bottom: 4px;
-}
-
-.inspector-header p {
-  font-size: 11px;
-  color: var(--text-muted);
-}
+.inspector-header h3 { font-size: 14px; color: var(--gold-chrysos); margin-bottom: 4px; }
+.inspector-header p { font-size: 11px; color: var(--text-muted); }
 
 .inspector-content {
   padding: 12px;
@@ -542,14 +753,5 @@ body {
   line-height: 1.4;
 }
 
-.packet-box span {
-  color: var(--gold-chrysos);
-  font-weight: bold;
-}
-
-.empty-inspector {
-  color: var(--text-muted);
-  font-size: 12px;
-  text-align: center;
-  margin-top: 30px;
-}
+.packet-box span { color: var(--gold-chrysos); font-weight: bold; }
+.empty-inspector { color: var(--text-muted); font-size: 12px; text-align: center; margin-top: 30px; }
