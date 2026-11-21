@@ -1,9 +1,6 @@
 /**
  * CIFERA // VAULT — Trickery Cryptographic Engine (Web Crypto API)
- * 1. PBKDF2-SHA256 : Menurunkan kunci AES-256 dari Coreflame Passphrase.
- * 2. AES-256-GCM   : Enkripsi & autentikasi pesan, file, serta identitas pengirim.
- * 3. SHA-256       : Segel integritas Golden Fleece untuk keutuhan isi file.
- * 4. Coin of Whimsy: Generator kunci acak berbasis CSPRNG (crypto.getRandomValues).
+ * Mendukung enkripsi Pesan, Artefak File (SHA-256), Stiker Cipher, & Sealed Sender.
  */
 
 const CiferaCrypto = {
@@ -27,7 +24,7 @@ const CiferaCrypto = {
     return bytes.buffer;
   },
 
-  // Coin of Whimsy: Membuat Passphrase Acak Aman Secara Kriptografis
+  // Coin of Whimsy: Generator Passphrase Acak
   generateWhimsyKey() {
     const prefixes = ["Cifera", "Zagreus", "Okhema", "Chrysos", "Trickery"];
     const prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
@@ -38,14 +35,14 @@ const CiferaCrypto = {
     return `${prefix}-${hex.slice(0, 6)}-${hex.slice(6)}`;
   },
 
-  // Menghitung Hash SHA-256 (Golden Fleece Integrity Seal)
+  // Hash SHA-256 (Golden Fleece Integrity Seal)
   async computeSHA256(arrayBuffer) {
     const hashBuffer = await crypto.subtle.digest("SHA-256", arrayBuffer);
     const hashArray = Array.from(new Uint8Array(hashBuffer));
     return hashArray.map((b) => b.toString(16).padStart(2, "0")).join("");
   },
 
-  // Derivasi Kunci AES-256 dari Passphrase menggunakan PBKDF2
+  // Derivasi Kunci AES-256-GCM dari Passphrase
   async deriveKey(passphrase, saltBytes) {
     const encoder = new TextEncoder();
     const keyMaterial = await crypto.subtle.importKey(
@@ -70,18 +67,18 @@ const CiferaCrypto = {
     );
   },
 
-  // Enkripsi Paket (Pesan + File + Sealed Sender)
-  async sealPacket({ senderName, isAnonymous, text, filePayload, passphrase, channel }) {
+  // Enkripsi Paket Lengkap (Pesan + File + Stiker Cipher + Sealed Sender)
+  async sealPacket({ senderName, isAnonymous, text, filePayload, stickerId, passphrase, channel }) {
     const salt = crypto.getRandomValues(new Uint8Array(16));
     const iv = crypto.getRandomValues(new Uint8Array(12));
     const aesKey = await this.deriveKey(passphrase, salt);
 
-    // Identitas asli pengirim dimasukkan ke dalam amplop terenkripsi
     const innerEnvelope = {
       realSender: isAnonymous ? "Phantom Thief [Veil of Zagreus]" : senderName,
       isAnonymous,
-      text,
-      file: filePayload,
+      text: text || "",
+      file: filePayload || null,
+      stickerId: stickerId || null,
       timestamp: new Date().toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" }),
     };
 
@@ -94,7 +91,6 @@ const CiferaCrypto = {
       encodedEnvelope
     );
 
-    // Paket yang beredar di jaringan publik: tanpa nama pengirim & tanpa nama file asli
     return {
       id: crypto.randomUUID(),
       channel,
