@@ -7,34 +7,100 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- Partikel Emas & Cahaya Quantum Melayang -->
+  <div class="ambient-particles" aria-hidden="true">
+    <span>✦</span><span>🪙</span><span>✦</span><span>🐾</span><span>✦</span><span>🪙</span>
+  </div>
+
   <div class="app-container">
     <!-- Sidebar Server (Kiri) -->
     <nav class="server-sidebar">
-      <div class="server-icon active" title="Okhema Vault (Server Utama)">
-        <!-- Ikon Kucing & Koin Khas Cipher -->
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M12 3l2.5 4.5L19 6l-1.5 5.5A7 7 0 1 1 6.5 11.5L5 6l4.5 1.5L12 3z"/>
-          <circle cx="9.5" cy="13" r="1" fill="currentColor"/>
-          <circle cx="14.5" cy="13" r="1" fill="currentColor"/>
+      <div class="server-icon active cat-ears-badge" title="Okhema Vault — Chrysos Heir of Trickery">
+        <!-- Emblem Wajah Kucing Cipher -->
+        <svg width="28" height="28" viewBox="0 0 64 64" fill="none">
+          <path d="M14 26L10 8L26 18C30 17 34 17 38 18L54 8L50 26C54 32 54 42 48 48C42 54 22 54 16 48C10 42 10 32 14 26Z" fill="#161d2c" stroke="#38bdf8" stroke-width="3"/>
+          <ellipse cx="24" cy="34" rx="4" ry="5" fill="#38bdf8" class="cipher-eye-blink"/>
+          <ellipse cx="40" cy="34" rx="4" ry="5" fill="#38bdf8" class="cipher-eye-blink"/>
+          <path d="M29 42L32 45L35 42" stroke="#f5c451" stroke-width="2.5" stroke-linecap="round"/>
         </svg>
       </div>
+
       <div class="server-divider"></div>
-      <button class="server-icon coin-btn" id="btn-gen-key" title="Coin of Whimsy: Buat Kunci Acak">🪙</button>
-      <button class="server-icon" id="btn-info" title="Protokol Coreflame of Trickery">📜</button>
+
+      <!-- Tombol Coin of Whimsy (Koin Zagreus) -->
+      <button class="server-icon coin-btn" id="btn-gen-key" title="Coin of Whimsy: Lempar Koin Kunci Acak">
+        🪙
+      </button>
+
+      <!-- Tombol Protokol -->
+      <button class="server-icon" id="btn-info" title="Protokol Coreflame of Trickery">
+        📜
+      </button>
     </nav>
 
-    <!-- Sidebar Channel & Konfigurasi Trickery -->
+    <!-- Sidebar Channel & Kartu Karakter Cipher -->
     <aside class="channel-sidebar">
       <div class="server-header">
         <div>
           <h2>CIFERA // VAULT</h2>
-          <span class="sub-lore">Amphoreus Relay</span>
+          <span class="sub-lore">✦ Chrysos Heir of Trickery</span>
         </div>
-        <span class="badge-secure">TRICKERY-256</span>
+        <span class="badge-secure">AES-256</span>
       </div>
 
+      <!-- Kartu Interaktif Cipher & Koin Zagreus 3D -->
+      <div class="cipher-showcase">
+        <div class="cipher-portrait" title="Cifera — Phantom Thief of Okhema">
+          <!-- Ilustrasi Vektor Karakter Cipher -->
+          <svg viewBox="0 0 120 120" width="68" height="68">
+            <defs>
+              <linearGradient id="hoodGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#1e293b"/>
+                <stop offset="100%" stop-color="#0f172a"/>
+              </linearGradient>
+              <linearGradient id="goldGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#fde047"/>
+                <stop offset="100%" stop-color="#d97706"/>
+              </linearGradient>
+            </defs>
+            <!-- Kerudung & Telinga Kucing -->
+            <path d="M26 48 L18 14 L46 32 Q60 28 74 32 L102 14 L94 48 C104 64 100 92 84 104 L36 104 C20 92 16 64 26 48 Z" fill="url(#hoodGrad)" stroke="#38bdf8" stroke-width="2.5"/>
+            <!-- Bagian Dalam Telinga -->
+            <path d="M27 40 L23 22 L40 33 Z" fill="#38bdf8" opacity="0.35"/>
+            <path d="M93 40 L97 22 L80 33 Z" fill="#38bdf8" opacity="0.35"/>
+            <!-- Wajah -->
+            <path d="M36 54 C36 42 84 42 84 54 C84 76 74 88 60 90 C46 88 36 76 36 54 Z" fill="#f8fafc"/>
+            <!-- Poni Rambut Perak-Biru -->
+            <path d="M34 54 Q45 38 60 52 Q75 38 86 54 Q76 44 60 47 Q44 44 34 54 Z" fill="#94a3b8"/>
+            <!-- Mata Kucing Cyan Menyala -->
+            <ellipse cx="47" cy="63" rx="5.5" ry="6.5" fill="#0284c7" class="cipher-eye-blink"/>
+            <ellipse cx="73" cy="63" rx="5.5" ry="6.5" fill="#0284c7" class="cipher-eye-blink"/>
+            <circle cx="45.5" cy="61" r="2" fill="#e0f2fe"/>
+            <circle cx="71.5" cy="61" r="2" fill="#e0f2fe"/>
+            <!-- Senyum Jahil Khas Cipher -->
+            <path d="M53 76 Q60 82 67 76" stroke="#334155" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+            <!-- Syal & Bros Koin Emas -->
+            <path d="M32 92 Q60 104 88 92 L94 112 L26 112 Z" fill="#1e3a8a" stroke="#f5c451" stroke-width="1.5"/>
+            <circle cx="60" cy="96" r="8" fill="url(#goldGrad)" stroke="#fef08a" stroke-width="1.5"/>
+            <text x="60" y="100" text-anchor="middle" font-size="9" font-weight="bold" fill="#78350f">Z</text>
+          </svg>
+        </div>
+
+        <div class="zagreus-coin-box">
+          <div class="coin-3d" id="zagreus-coin" title="Klik untuk melempar Koin Zagreus!">
+            <div class="coin-face coin-front">🪙</div>
+            <div class="coin-face coin-back">🐾</div>
+          </div>
+          <div class="coin-status">
+            <span class="coin-title">Koin Zagreus</span>
+            <small id="coin-quote">"Kepala atau ekor? Semuanya milikku~"</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Daftar Saluran -->
       <div class="channel-list">
-        <div class="channel-category">SALURAN BAYANGAN</div>
+        <div class="channel-category">🐾 SALURAN BAYANGAN</div>
         <button class="channel-item active" data-channel="okhema" data-desc="Saluran obrolan terenkripsi penuh untuk para Pewaris Chrysos.">
           <span class="hash">#</span> okhema-alley
         </button>
@@ -59,7 +125,6 @@
             <input type="password" id="secret-key-input" value="ZagreusTrickery2026" />
             <button type="button" id="btn-toggle-key" title="Lihat/Sembunyikan Kunci">👁️</button>
           </div>
-          <small>Klik ikon 🪙 di kiri untuk melempar koin kunci acak.</small>
         </div>
 
         <div class="config-checkbox">
@@ -70,27 +135,46 @@
         </div>
       </div>
 
-      <!-- Panel Status Pengguna -->
+      <!-- Panel Status Pengguna dengan Ornamen Telinga Kucing -->
       <div class="user-panel">
-        <div class="avatar" id="user-avatar">C</div>
+        <div class="avatar cat-avatar" id="user-avatar">C</div>
         <div class="user-details">
           <span id="display-username">Cifera</span>
-          <small class="status-online">✦ Langkah Bayangan Aktif</small>
+          <small class="status-online">🐾 Langkah Bayangan Aktif</small>
         </div>
       </div>
     </aside>
 
     <!-- Area Chat Utama -->
     <main class="chat-area">
+      <!-- Watermark Latar Belakang Karakter Cipher -->
+      <div class="chat-watermark" aria-hidden="true">
+        <svg viewBox="0 0 200 200" width="260" height="260">
+          <path d="M40 80 L25 20 L75 55 Q100 45 125 55 L175 20 L160 80 C180 110 170 160 100 180 C30 160 20 110 40 80 Z" fill="none" stroke="#38bdf8" stroke-width="2"/>
+          <circle cx="100" cy="115" r="38" fill="none" stroke="#f5c451" stroke-width="1.5" stroke-dasharray="6 4"/>
+          <path d="M68 95 Q78 85 88 95" stroke="#38bdf8" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path d="M112 95 Q122 85 132 95" stroke="#38bdf8" stroke-width="3" fill="none" stroke-linecap="round"/>
+        </svg>
+      </div>
+
       <header class="chat-header">
         <div>
           <h3 id="current-channel-title"># okhema-alley</h3>
           <span class="channel-desc" id="channel-desc">Saluran obrolan terenkripsi penuh untuk para Pewaris Chrysos.</span>
         </div>
-        <button id="btn-clear" class="btn-secondary">Hapus Jejak</button>
+        <button id="btn-clear" class="btn-secondary">🐾 Hapus Jejak</button>
       </header>
 
       <div class="messages-container" id="messages-container"></div>
+
+      <!-- Laci Stiker Cipher HSR (Pop-up di atas Input) -->
+      <div class="sticker-drawer hidden" id="sticker-drawer">
+        <div class="sticker-drawer-header">
+          <span>🐾 Stiker Cifera (Terenkripsi AES-256-GCM)</span>
+          <button type="button" id="btn-close-sticker">✕</button>
+        </div>
+        <div class="sticker-grid" id="sticker-grid"></div>
+      </div>
 
       <!-- Preview File Sebelum Disegel -->
       <div class="file-preview hidden" id="file-preview">
@@ -98,10 +182,15 @@
         <button type="button" id="btn-remove-file">✕</button>
       </div>
 
-      <!-- Form Input Pesan & File -->
+      <!-- Form Input Pesan, File & Stiker -->
       <form class="chat-input-area" id="chat-form">
         <label for="file-input" class="attach-btn" title="Sisipkan Artefak / File Terenkripsi">📎</label>
         <input type="file" id="file-input" hidden />
+
+        <button type="button" class="sticker-btn" id="btn-sticker-toggle" title="Kirim Stiker Cipher HSR">
+          😺
+        </button>
+
         <input
           type="text"
           id="message-input"
@@ -112,7 +201,7 @@
       </form>
     </main>
 
-    <!-- Panel Inspector Kriptografi (Untuk Demo ke Dosen) -->
+    <!-- Panel Inspector Kriptografi -->
     <aside class="inspector-sidebar">
       <div class="inspector-header">
         <h3>👁️ Okhema Public Ledger</h3>
